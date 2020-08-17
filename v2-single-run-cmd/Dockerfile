@@ -23,11 +23,11 @@ RUN   apk add --no-cache --virtual .build-deps                                  
         make install                                                                    &&      \
                                                                                                 \
 # Clean up 
-cd / && rm -rf /var/cache/apk/* && \
-        rm -rf /tmp/* && \
-         apk update && \
-\                                                                                               
-        rm -rf "$TMP"              &&      \ 
+cd / && rm -rf /var/cache/apk/*                                                         &&      \
+        rm -rf /tmp/*                                                                   &&      \
+        apk update                                                                      &&      \
+                                                                                                \                                                                                               
+        rm -rf "$TMP"                                                                   &&      \ 
         apk del .build-deps
 
 COPY index.html /usr/local/nginx/html/
