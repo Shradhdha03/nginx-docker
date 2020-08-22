@@ -1,4 +1,4 @@
-FROM alpine:3 AS build
+FROM alpine:3.12.0 AS build
 
 # Install build tools
 RUN apk add --no-cache --virtual .build-deps                         \
@@ -24,7 +24,7 @@ RUN cd /nginx-${VERSION} && ./configure                              \
         --with-http_sub_module                                    && \
     make install                                                
 
-FROM alpine:3
+FROM alpine:3.12.0
 
 WORKDIR /usr/local/nginx/html
 

@@ -1,4 +1,4 @@
-FROM alpine:3
+FROM alpine:3.12.0
 
 # Install build tools
 RUN apk add --no-cache --virtual .build-deps                         \
@@ -20,7 +20,7 @@ RUN tar xf nginx-${VERSION}.tar.gz
 
 RUN cd nginx-${VERSION} && ./configure --with-ld-opt="-static" --with-http_sub_module                                   
         
-RUN cd nginx-${VERSION} &&  make install                          
+RUN cd nginx-${VERSION} &&  make install    
 
 COPY index.html /usr/local/nginx/html/
 COPY nginx.conf /usr/local/nginx/conf/
@@ -36,4 +36,17 @@ STOPSIGNAL SIGQUIT
 # Expose port
 EXPOSE 80
 
+
 CMD ["/usr/local/nginx/sbin/nginx", "-g", "daemon off;"]
+
+RUN rm -rf /var/cache/apk/*  && rm -rf /tmp/*                                                                   
+
+RUN apk update  
+
+RUN apk del .build-deps
+
+RUN rm nginx-${VERSION}.tar.gz
+
+RUN rm -r nginx-${VERSION}
+
+ 

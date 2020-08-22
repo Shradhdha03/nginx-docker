@@ -1,4 +1,4 @@
-FROM alpine:3
+FROM alpine:3.12.0
 
 WORKDIR /usr/local/nginx/html
 

@@ -21,3 +21,17 @@ v3-builder-pattern:
   
 v4-multi-stage-build:
   - Image size 12.3MB
+
+
+docker container export -o nginx.tar $(docker container ls -lq)
+
+tar -xvf nginx.tar | grep nginx-1.19.2
+
+7z l .\nginx.tar nginx-1.19.2 -r
+
+
+docker image import lighttpd-1.1.tar lighttpd.1.1
+
+docker image history light:1.1 | tranc
+
+unrealibe || scary
